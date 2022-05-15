@@ -2,7 +2,7 @@
     <mat-card class="login-card-container">
 
         <mat-card-header class="login-card-header">
-            <mat-card-title class="login-card-title"> Student Management</mat-card-title>
+            <mat-card-title class="login-card-title">Student Management</mat-card-title>
         </mat-card-header>
 
         <mat-card-content class="login-card-content">
@@ -17,14 +17,14 @@
 
                         <mat-error *ngIf="loginForm.get('loginEmailControl')!.hasError('pattern') && 
                                       !loginForm.get('loginEmailControl')!.hasError('required')">
-                            Please provide your <strong>firstname.lastname@tss-yonder.com</strong> mail account
+                            Please provide your <strong>firstname.lastname@ubbcluj.com</strong> mail account
                         </mat-error>
 
                         <mat-error *ngIf="loginForm.get('loginEmailControl')!.hasError('required')">
                             Email is <strong>required</strong>
                         </mat-error>
 
-                        <mat-hint>Login with your @tss-yonder.com mail account</mat-hint>
+                        <mat-hint>Login with your @ubbcluj.ro mail account</mat-hint>
                     </mat-form-field>
                 </div>
 
@@ -56,6 +56,4 @@
         </mat-card-content>
 
     </mat-card>
-
-    <a href="/register">Don't have an account?</a>
 </div>

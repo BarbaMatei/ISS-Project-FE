@@ -32,7 +32,7 @@ export class LoginCardComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       loginEmailControl: new FormControl('', [
         Validators.required,
-        Validators.pattern('[a-zA-Z]+\\.[a-zA-Z]+@tss-yonder\\.com'),
+        Validators.pattern('[a-zA-Z]+\\.[a-zA-Z]+@ubbcluj\\.com'),
       ]),
       loginPasswordControl: new FormControl('', [
         Validators.required,
