@@ -17,7 +17,7 @@ export class SpecializationTableComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(private router: Router, private enrollService: EnrollService) {
-    this.enrollService.getSpecializations(1).subscribe((value) => {
+    this.enrollService.getSpecializations(2).subscribe((value) => {
       this.specializations = value;
       this.specializations.forEach((value) =>{
         if(value.next_year != 0){
