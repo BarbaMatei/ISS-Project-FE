@@ -1,0 +1,30 @@
+<div>
+    <mat-toolbar id="navigationBar">
+      <button *ngIf="navDisplay()" (click)="sidenav.toggle()"  mat-button mat-icon-button class="example-icon more-button" style="color: #E22012;" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span (click)="redirectToHome()">AcademicInfo</span>
+      <span class="spacer"></span>
+      <button  *ngIf="!navDisplay()" mat-raised-button class="interact-object nav-buttons" (click)="redirectToLogin()">
+        Login
+      </button>
+    </mat-toolbar>
+    <mat-sidenav-container class="menu-container" autosize >
+      <mat-sidenav #sidenav mode="side" class="menu-sidenav" [fixedInViewport]="false">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                My profile
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button mat-raised-button class="interact-object choice-button">See my profile</button>
+            <mat-divider></mat-divider>
+            <button mat-raised-button class="interact-object choice-button">Update my profile</button>
+            <mat-divider></mat-divider>
+            <button mat-raised-button class="interact-object choice-button" (click)="sidenav.toggle();signOut()">Sign out</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-sidenav>
+    </mat-sidenav-container>
+  </div>

@@ -1,0 +1,52 @@
+#navigationBar{
+    background: #29262B;
+     position: fixed;
+     z-index: 100;
+     box-shadow: 0 3px yellow;
+   }
+   
+   .nav-buttons{
+     margin: 0 2vw 0 2vw;
+   }
+   
+   span{
+     font-family: Roboto, "Helvetica Neue", sans-serif;
+     font-weight: bolder;
+     font-size: x-large;
+     color: yellow;
+   }
+   
+   .interact-object{
+     background: #858585;
+     color: yellow;
+     font-family: 'Roboto Mono',SansSerif,Roboto, "Helvetica Neue", sans-serif;
+     font-weight: bold;
+     font-size: large;
+   }
+   
+   .choice-button{
+     margin: 1vh 0 1vh 0;
+   }
+   
+   .menu-container{
+     position: absolute;
+     top: 62px;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     background-color: initial;
+     width: 15vw;
+   }
+   
+   .menu-sidenav{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 15vw;
+     background: #858585;
+   }
+   
+   .spacer{
+     flex: 1 1 auto;
+   }
+   
