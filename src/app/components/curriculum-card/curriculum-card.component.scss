@@ -1,0 +1,21 @@
+.curriculum-card {
+    width: 700px;
+    height: 450px;
+    padding: 0;
+    box-shadow: 4px 4px 3px #d9d9d9;
+    border-radius: 6px;
+}
+
+td, th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.mat-sort-header-container {
+    justify-content: center !important;
+}
+
+.title{
+    display:flex;
+    justify-content: center;
+}

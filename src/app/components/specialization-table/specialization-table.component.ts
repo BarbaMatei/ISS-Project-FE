@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Specialization } from 'src/app/models/specialization';
+import { Router } from '@angular/router';
+import { Specialization, TableSpecialization } from 'src/app/models/specialization';
+import { EnrollService } from 'src/app/services/enroll.service';
 
 @Component({
   selector: 'app-specialization-table',
@@ -7,28 +9,31 @@ import { Specialization } from 'src/app/models/specialization';
   styleUrls: ['./specialization-table.component.scss']
 })
 export class SpecializationTableComponent implements OnInit {
-
-  dataSource: Specialization[] = [
-    {id: 1, name: "Matematica", yearsOfStudy: 3, nextYearOfStudy: 1},
-    {id: 2, name: "Informatica", yearsOfStudy: 3, nextYearOfStudy: 0},
-    {id: 3, name: "Calculatoare", yearsOfStudy: 4, nextYearOfStudy: 0},
-    {id: 4, name: "Inginerie", yearsOfStudy: 4, nextYearOfStudy: 0}
-  ]
-
   displayedColumns: string[] = ["name", "yearsOfStudy", "nextYearOfStudy", "Actions"]
 
   noOfEnrolledSpecialization: number = 0;
 
-  constructor() {
-    let count = 0;
-    this.dataSource.forEach(function(value) {
-      if(value.nextYearOfStudy != 0)
-        count += 1;
+  specializations!: TableSpecialization[];
+  isLoading: boolean = true;
+
+  constructor(private router: Router, private enrollService: EnrollService) {
+    this.enrollService.getSpecializations(1).subscribe((value) => {
+      this.specializations = value;
+      this.specializations.forEach((value) =>{
+        if(value.next_year != 0){
+          this.noOfEnrolledSpecialization += 1;
+        }
+      })
+      console.log(this.specializations);
+      this.isLoading = false;
     })
-    this.noOfEnrolledSpecialization = count;
   }
 
   ngOnInit(): void {
+  }
+
+  seeCurriculum(specializationId: number): void{
+    this.router.navigate(['specialization', specializationId]);
   }
 
 }

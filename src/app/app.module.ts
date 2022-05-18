@@ -17,12 +17,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { SpecializationTableComponent } from './components/specialization-table/specialization-table.component';
 import {MatTableModule} from '@angular/material/table';
+import { SpecializationInfoComponent } from './components/specialization-info/specialization-info.component';
+import { CurriculumCardComponent } from './components/curriculum-card/curriculum-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginCardComponent,
-    SpecializationTableComponent
+    SpecializationTableComponent,
+    SpecializationInfoComponent,
+    CurriculumCardComponent
   ],
   imports: [
     BrowserModule,
