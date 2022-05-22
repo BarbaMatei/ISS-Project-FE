@@ -22,11 +22,16 @@ import { CurriculumCardComponent } from './components/curriculum-card/curriculum
 import { GradesComponent } from './grades/grades.component';
 import { NavigationBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDividerModule} from '@angular/material/divider';
+import { SignContractComponent } from './components/sign-contract/sign-contract.component';
+import {MatSelectModule} from '@angular/material/select';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
+import { RegisterCardComponent } from './components/register-card/register-card.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,10 @@ import {MatDividerModule} from '@angular/material/divider';
     SpecializationInfoComponent,
     CurriculumCardComponent,
     GradesComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    SignContractComponent,
+    GradeStudentsComponent,
+    RegisterCardComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +65,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatExpansionModule,
     MatGridListModule,
     MatDividerModule,
+    MatSelectModule,
+    DragDropModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

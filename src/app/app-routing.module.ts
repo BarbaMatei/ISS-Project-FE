@@ -5,13 +5,17 @@ import { NavigationBarComponent } from './components/nav-bar/nav-bar.component';
 import { SpecializationInfoComponent } from './components/specialization-info/specialization-info.component';
 import { SpecializationTableComponent } from './components/specialization-table/specialization-table.component';
 import { GradesComponent } from './grades/grades.component';
+import { SignContractComponent } from './components/sign-contract/sign-contract.component';
+import { RegisterCardComponent } from './components/register-card/register-card.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
-  { path:'login', component: LoginCardComponent },
-  { path:'specialization', component: SpecializationTableComponent },
-  { path:'specialization/:id', component: SpecializationInfoComponent },
+  { path:'login', component: LoginCardComponent},
+  { path:'specialization', component: SpecializationTableComponent, canActivate: [AuthGuard] },
+  { path:'specialization/:id', component: SpecializationInfoComponent, canActivate: [AuthGuard] },
+  { path:'sign', component: SignContractComponent, canActivate: [AuthGuard] },
   { path:'grades', component: GradesComponent },
-  { path:'navigation', component: NavigationBarComponent }
+  { path:'register', component: RegisterCardComponent}
 ];
 
 @NgModule({

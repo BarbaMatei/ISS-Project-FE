@@ -1,0 +1,29 @@
+.optional-part{
+    display:flex;
+    flex-direction: row;
+}
+
+.arrows{
+    display:flex;
+    flex-direction: column;
+}
+
+.forward-arrow{
+    color: green;
+    width: 200px;
+    height: 200px;
+    font-size: 200px;
+}
+
+.backwards-arrow{
+    color: red;
+    width: 200px;
+    height: 200px;
+    font-size: 200px;
+    transform: rotate(0.5turn);
+}
+
+.second-row{
+    display:flex;
+    justify-content: space-between;
+}
