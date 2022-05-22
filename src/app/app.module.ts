@@ -20,6 +20,7 @@ import {MatTableModule} from '@angular/material/table';
 import { SpecializationInfoComponent } from './components/specialization-info/specialization-info.component';
 import { CurriculumCardComponent } from './components/curriculum-card/curriculum-card.component';
 import { GradesComponent } from './grades/grades.component';
+import { NavigationBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -34,7 +35,8 @@ import {MatDividerModule} from '@angular/material/divider';
     SpecializationTableComponent,
     SpecializationInfoComponent,
     CurriculumCardComponent,
-    GradesComponent
+    GradesComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
