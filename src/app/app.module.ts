@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -26,6 +26,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDividerModule} from '@angular/material/divider';
+import { StaffComponent } from './components/staff/staff.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs'; 
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import {MatDividerModule} from '@angular/material/divider';
     SpecializationTableComponent,
     SpecializationInfoComponent,
     CurriculumCardComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    StaffComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatExpansionModule,
     MatGridListModule,
     MatDividerModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatTabsModule,
+  
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

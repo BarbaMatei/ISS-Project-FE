@@ -1,0 +1,93 @@
+<p>
+
+    
+</p>
+<button (click)="printPage()">Print</button>
+<mat-tab-group>
+
+  
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Year
+      </ng-template>
+      <p>The list of students from each year ordered by their professional results:</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Year</mat-label>
+        <select matNativeControl>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </mat-form-field>
+      <p> <br /><br /><br /></p>
+      <pre> 
+  
+        </pre>
+        
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="grade">
+        <th mat-header-cell *matHeaderCellDef> Grade </th>
+        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+      </ng-container>
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </mat-tab>
+  
+  
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Final Grades
+      </ng-template>
+      <p>Students classified in decreasing order of obtained results:</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Specialization</mat-label>
+        <select matNativeControl>
+          <option value="1">"Informatica-engleza"</option>
+          <option value="2">"Informatica-romana"</option>
+          <option value="3">"Informatica-germana"</option>
+          <option value="4">"Matematica-engleza"</option>
+          <option value="5">"Matematica-romana"</option>
+          <option value="6">"Matematica-germana"</option>
+          <option value="7">"Matematica-engleza"</option>
+          <option value="8">"Matematica-Informatica-romana"</option>
+          <option value="9">"Matematica-Informatica-engleza"</option>
+          <option value="10">"Matematica-Informatica-germana"</option>
+        </select>
+      </mat-form-field>
+      <p> <br /><br /><br /></p>
+      <pre> 
+  
+        </pre>
+        
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="grade">
+        <th mat-header-cell *matHeaderCellDef> Grade </th>
+        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+      </ng-container>
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </mat-tab>
+  
+  </mat-tab-group>
+
