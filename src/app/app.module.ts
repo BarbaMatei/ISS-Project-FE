@@ -19,6 +19,13 @@ import { SpecializationTableComponent } from './components/specialization-table/
 import {MatTableModule} from '@angular/material/table';
 import { SpecializationInfoComponent } from './components/specialization-info/specialization-info.component';
 import { CurriculumCardComponent } from './components/curriculum-card/curriculum-card.component';
+import { NavigationBarComponent } from './components/nav-bar/nav-bar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -26,7 +33,8 @@ import { CurriculumCardComponent } from './components/curriculum-card/curriculum
     LoginCardComponent,
     SpecializationTableComponent,
     SpecializationInfoComponent,
-    CurriculumCardComponent
+    CurriculumCardComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,13 @@ import { CurriculumCardComponent } from './components/curriculum-card/curriculum
     MatInputModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatDividerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
