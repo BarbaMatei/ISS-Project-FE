@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Course } from 'src/app/models/course';
-import { Curriculum } from 'src/app/models/curriculum';
 import { CurriculumService } from 'src/app/services/curriculum.service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { MatTableDataSource } from '@angular/material/table';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-curriculum-card',
@@ -9,38 +11,91 @@ import { CurriculumService } from 'src/app/services/curriculum.service';
   styleUrls: ['./curriculum-card.component.scss']
 })
 export class CurriculumCardComponent implements OnInit {
-  @Input() curriculum!: Curriculum;
+  @Input() curriculumId!: number;
+  @Input() myCourses: Course[] = [];
+  @Input() showOptional: boolean = true;
+  @Input() showMandatory: boolean = true;
+  @Input() isDragListActive: boolean = false;
+  @Input() isLoading: boolean = true;
+  @Input() haveCheckBox: boolean = false;
 
-  displayedColumns: string[] = [
-    'course_name', 'credits', 'maximum_students', 'required', 'teacher_id'
-  ]
-  // curriculums: Curriculum[] = [
-  //   {id: 1, year: 1, language: 'english', specialization_id: 1},
-  //   {id: 2, year: 2, language: 'english', specialization_id: 1},
-  //   {id: 3, year: 3, language: 'english', specialization_id: 1},
-  // ]
-
-  // courses: Course[] = [
-  //   {id: 1, course_name: 'Logic and Set Theory', credits: 6, maximum_students: 200, required: true, teacher_id: 1, curriculum_id: 1},
-  //   {id: 2, course_name: 'Calculus', credits: 6, maximum_students: 200, required: true, teacher_id: 1, curriculum_id: 1},
-  //   {id: 3, course_name: 'Geometry', credits: 6, maximum_students: 200, required: true, teacher_id: 1, curriculum_id: 1},
-  //   {id: 4, course_name: 'Algebra', credits: 6, maximum_students: 200, required: true, teacher_id: 1, curriculum_id: 1},
-  //   {id: 5, course_name: 'Algorithms and Programming', credits: 6, maximum_students: 200, required: true, teacher_id: 1, curriculum_id: 1},
-  //   {id: 6, course_name: 'Personal development', credits: 3, maximum_students: 200, required: false, teacher_id: 1, curriculum_id: 1},
-  //   {id: 7, course_name: 'Specialized English', credits: 3, maximum_students: 200, required: false, teacher_id: 1, curriculum_id: 1},
-  // ]
-  
-  myCourses!: Course[];
-  isLoadiong: boolean = true;
+  displayedColumns: string[] = ['select', 'course_name', 'credits', 'maximum_students', 'required', 'teacher_id']
+  dataSource = new MatTableDataSource<Course>();
+  selection = new SelectionModel<Course>(true, []);
 
   constructor(private curriculumService: CurriculumService) { }
 
   ngOnInit(): void {
-    this.curriculumService.getCoursesForCurriculum(this.curriculum.id).subscribe((value) => {
-      this.myCourses = value;
-      console.log(this.myCourses);
-      this.isLoadiong = false;
-    })
+    if(!this.haveCheckBox){
+      this.displayedColumns.forEach((value,index)=>{
+        if(value=='select') this.displayedColumns.splice(index,1);
+    });
+    }
+    this.initializeCourses();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.curriculumId = changes['curriculumId'].currentValue;
+    this.myCourses = changes['courses'] != null ? changes['courses'].currentValue : [];
+    this.initializeCourses();
+  }
+
+
+  initializeCourses(){
+    if(this.curriculumId != undefined && this.myCourses.length == 0){
+      this.curriculumService.getCoursesForCurriculum(this.curriculumId).subscribe((value) => {
+        this.myCourses = value;
+        this.filterCourses();
+        this.dataSource.data = this.myCourses;
+        this.isLoading = false;
+      });
+    }
+    else{
+      this.dataSource.data = this.myCourses;
+    }
+  }
+
+  filterCourses(){
+    if(this.showMandatory && !this.showOptional){
+      this.myCourses = this.myCourses.filter(function(value) {
+        return value.required == 'MANDATORY';
+      });
+    }
+    if(!this.showMandatory && this.showOptional){
+      this.myCourses = this.myCourses.filter(function(value) {
+        return value.required == 'OPTIONAL';
+      });
+    }
+  }
+
+  drop(event: CdkDragDrop<Course[]>) {
+    const previousIndex = this.dataSource.data.findIndex(row => row === event.item.data);
+    moveItemInArray(this.dataSource.data,previousIndex, event.currentIndex);
+    this.dataSource.data = this.dataSource.data.slice();
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Course): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
 }

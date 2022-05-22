@@ -64,7 +64,7 @@ export class HttpService {
 
       this.headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:4020',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET,POST,DELETE,PUT',
         // 'Authorization': 'Bearer szdp79a2kz4wh4frjzuqu4sz6qeth8m3',

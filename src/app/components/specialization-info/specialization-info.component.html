@@ -1,6 +1,6 @@
 <p>specialization-info works!</p>
 <div class="page-layout">
     <div *ngFor="let curriculum of curriculums">
-        <app-curriculum-card [curriculum]="curriculum"></app-curriculum-card>
+        <app-curriculum-card [curriculumId]="curriculum.id" class="card"></app-curriculum-card>
     </div>
 </div>

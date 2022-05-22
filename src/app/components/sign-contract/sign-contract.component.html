@@ -1,0 +1,36 @@
+<h1></h1>
+<mat-form-field appearance="fill">
+    <mat-label>Choose a specialization</mat-label>
+    <mat-select (selectionChange)="changedSpecialization($event.value)">
+        <ng-container *ngFor="let specialization of specializations">
+            <mat-option value="{{specialization.id}}"> {{specialization.name}} </mat-option>
+        </ng-container>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Choose a curriculum</mat-label>
+    <mat-select (selectionChange)="changedCurriculum($event.value)" disabled="{{curriculums.length == 0 ? true : false}}">
+        <ng-container *ngFor="let curriculum of curriculums">
+            <mat-option value="{{curriculum.id}}"> {{curriculum.curriculum_name}} </mat-option>
+        </ng-container>
+    </mat-select>
+</mat-form-field>
+
+<div class="second-row">
+    <app-curriculum-card [curriculumId]="showCurriculumId" [myCourses]="[]" [showMandatory]="true" [showOptional]="false"></app-curriculum-card>
+    <div>
+        <button mat-raised-button color="primary" *ngIf="(showCurriculumId != null && showCurriculumId != 0)">SIGN</button>
+    </div>
+</div>
+
+<br> <br> <br>
+<div class="optional-part"> 
+    <app-curriculum-card [curriculumId]="showCurriculumId" [myCourses]="[]" [showMandatory]="false" [showOptional]="true" [isDragListActive]="false" [haveCheckBox]="true"></app-curriculum-card>
+    <div class="arrows">
+        <br><br><br>
+        <mat-icon class="forward-arrow" *ngIf="(showCurriculumId != null && showCurriculumId != 0)"> arrow_right_alt </mat-icon>
+        <mat-icon class="backwards-arrow" *ngIf="(showCurriculumId != null && showCurriculumId != 0)"> arrow_right_alt </mat-icon>
+    </div>
+    <app-curriculum-card [myCourses]="[]" [showMandatory]="false" [showOptional]="true" [isDragListActive]="true" [isLoading]="!(showCurriculumId != null && showCurriculumId != 0)" [haveCheckBox]="true"></app-curriculum-card>
+</div>

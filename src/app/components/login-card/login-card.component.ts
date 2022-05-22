@@ -1,8 +1,10 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { loginUser } from 'src/app/models/loginUser';
+import { Tokens } from 'src/app/models/tokens';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,7 +18,6 @@ export class LoginCardComponent implements OnInit {
   loginStatus: boolean = false;
   loginMessage: string = '';
   error = '';
-
   responseUserObject?: loginUser;
 
   constructor(
@@ -30,14 +31,8 @@ export class LoginCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      loginEmailControl: new FormControl('', [
-        Validators.required,
-        Validators.pattern('[a-zA-Z]+\\.[a-zA-Z]+@ubbcluj\\.com'),
-      ]),
-      loginPasswordControl: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-      ])
+      loginEmailControl: new FormControl('', []),
+      loginPasswordControl: new FormControl('', [])
     });
   }
 
@@ -55,7 +50,7 @@ export class LoginCardComponent implements OnInit {
 
   onLoginUser(): void {
     const user: loginUser = {
-      email: this.loginForm.get('loginEmailControl')!.value,
+      username: this.loginForm.get('loginEmailControl')!.value,
       password: this.loginForm.get('loginPasswordControl')!.value,
     };
     this.loginService.login(user).subscribe({ 
@@ -67,12 +62,12 @@ export class LoginCardComponent implements OnInit {
       },
         next: (data: loginUser) => {
         this.responseUserObject = { ...data };
-        this.snackBar.open(`Login of user ${this.responseUserObject.name} successful!`,
+        this.snackBar.open(`Login of user ${this.responseUserObject.username} successful!`,
           '',
           {
             duration: 3000
           })
-        this.router.navigate(["/"]);
+          this.router.navigate(["/specialization"]);
       }
     });
   }
