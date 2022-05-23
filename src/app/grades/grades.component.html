@@ -3,7 +3,7 @@
       <p id="result-container" class="text-containers">
         <mat-form-field appearance="fill">
           <mat-label>Year</mat-label>
-          <mat-select formControlName="result">
+          <mat-select formControlName="result" (selectionChange)="changedYear($event.value)">
             <mat-option *ngFor="let year of years" [value]="year">
               {{year}}
             </mat-option>
@@ -18,9 +18,9 @@
       <p id="result-container" class="text-containers">
         <mat-form-field appearance="fill">
           <mat-label>Specialization</mat-label>
-          <mat-select formControlName="result">
-            <mat-option *ngFor="let spec of specialization" [value]="spec">
-              {{spec}}
+          <mat-select formControlName="result" (selectionChange)="changedSpecialization($event.value)">
+            <mat-option *ngFor="let spec of specializations" [value]="spec">
+              {{spec.name}}
             </mat-option>
             </mat-select>
         </mat-form-field>

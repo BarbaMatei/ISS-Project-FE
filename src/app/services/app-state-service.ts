@@ -11,6 +11,10 @@ export class AppStateService {
         return this.sessionInfo$;
     }
 
+    getAccessToken(): string{
+        return JSON.parse(localStorage.getItem('currentUser')!).refresh_token;
+    }
+
     getDecodedAccessToken(token: string): any {
         try {
             console.log(jwt_decode(token));
@@ -27,5 +31,10 @@ export class AppStateService {
     getCurrentUserId(): number {
         const token = JSON.parse(localStorage.getItem('currentUser')!).access_token;
         return this.getDecodedAccessToken(token).UserID; // decode token and get userId
+    }
+
+    getCurrentUserRole(): string {
+        const token = JSON.parse(localStorage.getItem('currentUser')!).access_token;
+        return this.getDecodedAccessToken(token).role[0]; // decode token and get userId
     }
 }

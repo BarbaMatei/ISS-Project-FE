@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Role } from '../models/constants';
+import { AppStateService } from '../services/app-state-service';
 import { AuthenticationService } from '../services/auth.service';
 
 
@@ -24,39 +25,47 @@ export class AuthGuard implements CanActivate {
     }
 }
 
-// @Injectable({ providedIn: 'root' })
-// export class AdminGuard implements CanActivate {
-//     constructor(
-//         private router: Router
-//     ) { }
+@Injectable({ providedIn: 'root' })
+export class StudentGuard implements CanActivate {
+    constructor(
+        private router: Router,
+        private appState: AppStateService
+    ) { }
 
-//     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-//         var userRole = JSON.parse(localStorage.getItem("currentUser"));
-//         if (userRole == Role.Admin) {
-//             // admin
-//             return true;
-//         }
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        var userRole = this.appState.getCurrentUserRole();
+        if (userRole === "STUDENT") {
+            // student
+            return true;
+        }
+        
 
-//         // normal user
-//         this.router.navigate(['/dashboard'], { queryParams: { returnUrl: state.url } });
-//         return false;
-//     }
-// }
+        // teacher/staff user
+        this.router.navigate(['/'], { queryParams: { returnUrl: state.url } });
+        return false;
+    }
+}
 
-// @Injectable({ providedIn: 'root' })
-// export class UserGuard implements CanActivate {
-//     constructor(
-//         private router: Router
-//     ) { }
+@Injectable({ providedIn: 'root' })
+export class TeacherGuard implements CanActivate {
+    constructor(
+        private router: Router,
+        private appState: AppStateService
+    ) { }
 
-//     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-//         var userRole = JSON.parse(localStorage.getItem("currentUser")).role;
-//         if (userRole == Role.User) {
-//             // normal user
-//             return true;
-//         }
-//         // admin
-//         this.router.navigate(['/administrate-categories'], { queryParams: { returnUrl: state.url } });
-//         return false;
-//     }
-// }
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        var userRole = this.appState.getCurrentUserRole();
+        if (userRole === "TEACHER") {
+            // teacher
+            return true;
+        }
+        else if(userRole === "STUDENT"){
+            this.router.navigate(['/specialization'], { queryParams: { returnUrl: state.url } });
+        }
+        else{
+            // teacher/staff
+            this.router.navigate(['/'], { queryParams: { returnUrl: state.url } });
+        }
+        return false;
+    }
+}
