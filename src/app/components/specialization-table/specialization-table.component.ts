@@ -37,3 +37,5 @@ export class SpecializationTableComponent implements OnInit {
   }
 
 }
+
+

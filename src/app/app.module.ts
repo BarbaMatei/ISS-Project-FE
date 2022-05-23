@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -32,6 +32,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
 import { RegisterCardComponent } from './components/register-card/register-card.component';
+import { StaffComponent } from './components/staff/staff.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { RegisterCardComponent } from './components/register-card/register-card.
     NavigationBarComponent,
     SignContractComponent,
     GradeStudentsComponent,
+    StaffComponent,
     RegisterCardComponent
   ],
   imports: [
@@ -65,6 +69,9 @@ import { RegisterCardComponent } from './components/register-card/register-card.
     MatExpansionModule,
     MatGridListModule,
     MatDividerModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatTabsModule,
     MatSelectModule,
     DragDropModule,
     MatCheckboxModule
