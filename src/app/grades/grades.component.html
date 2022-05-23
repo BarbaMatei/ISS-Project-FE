@@ -1,0 +1,53 @@
+<div id="main-container">
+    <div id="year-form-container" [formGroup]="paperForm">
+      <p id="result-container" class="text-containers">
+        <mat-form-field appearance="fill">
+          <mat-label>Year</mat-label>
+          <mat-select formControlName="result" (selectionChange)="changedYear($event.value)">
+            <mat-option *ngFor="let year of years" [value]="year">
+              {{year}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </p>
+  </div>
+  
+  
+  <div id="second-container">
+    <div id="specialization-form-container" [formGroup]="paperForm">
+      <p id="result-container" class="text-containers">
+        <mat-form-field appearance="fill">
+          <mat-label>Specialization</mat-label>
+          <mat-select formControlName="result" (selectionChange)="changedSpecialization($event.value)">
+            <mat-option *ngFor="let spec of specializations" [value]="spec">
+              {{spec.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </p>
+  </div>
+  
+  </div>
+  
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="grade">
+        <th mat-header-cell *matHeaderCellDef> Grade </th>
+        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="course">
+        <th mat-header-cell *matHeaderCellDef> Course </th>
+        <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+      </ng-container>
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>

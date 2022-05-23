@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { TableSpecialization } from '../models/specialization';
+import { Specialization, TableSpecialization } from '../models/specialization';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -14,6 +14,12 @@ export class EnrollService {
   getSpecializations(studentId: number): Observable<TableSpecialization[]>{
     return this.httpService
       .getById<TableSpecialization[]>(studentId, 'enroll/specializations')
+      .pipe(catchError(this.httpService.handleHttpErrorResponse));
+  }
+
+  getEnrolledSpecializations(studentId: number): Observable<Specialization[]>{
+    return this.httpService
+      .getById<Specialization[]>(studentId, 'enroll/enrolled-specializations')
       .pipe(catchError(this.httpService.handleHttpErrorResponse));
   }
 }

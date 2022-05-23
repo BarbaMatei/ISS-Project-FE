@@ -1,0 +1,9 @@
+.page-layout{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    flex: 1 0 21%; /* explanation below */
+    margin-right: 15px;
+}

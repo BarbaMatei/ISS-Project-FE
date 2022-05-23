@@ -1,3 +1,7 @@
-<ng-container>
+<ng-container *ngIf="isMenuVisible; else elseBlock">
+    <app-nav-bar></app-nav-bar>
     <router-outlet></router-outlet>
 </ng-container>
+<ng-template #elseBlock>
+    <router-outlet></router-outlet>
+</ng-template>

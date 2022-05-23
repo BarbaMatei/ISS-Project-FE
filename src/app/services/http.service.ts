@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AppStateService } from './app-state-service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class HttpService {
   headers!: HttpHeaders;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private appState: AppStateService) {
 
   }
   
@@ -64,10 +65,10 @@ export class HttpService {
 
       this.headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:4020',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET,POST,DELETE,PUT',
-        // 'Authorization': 'Bearer szdp79a2kz4wh4frjzuqu4sz6qeth8m3',
+        'Authorization': 'Bearer ' + this.appState.getAccessToken()
       });
   }
 

@@ -19,16 +19,23 @@ import { SpecializationTableComponent } from './components/specialization-table/
 import {MatTableModule} from '@angular/material/table';
 import { SpecializationInfoComponent } from './components/specialization-info/specialization-info.component';
 import { CurriculumCardComponent } from './components/curriculum-card/curriculum-card.component';
+import { GradesComponent } from './grades/grades.component';
+import { NavigationBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDividerModule} from '@angular/material/divider';
+import { SignContractComponent } from './components/sign-contract/sign-contract.component';
+import {MatSelectModule} from '@angular/material/select';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
+import { RegisterCardComponent } from './components/register-card/register-card.component';
+import { StaffComponent } from './components/staff/staff.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { MatListModule } from '@angular/material/list';
-import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +44,12 @@ import { GradeStudentsComponent } from './components/grade-students/grade-studen
     SpecializationTableComponent,
     SpecializationInfoComponent,
     CurriculumCardComponent,
-    GradeStudentsComponent
+    GradesComponent,
+    NavigationBarComponent,
+    SignContractComponent,
+    GradeStudentsComponent,
+    StaffComponent,
+    RegisterCardComponent
   ],
   imports: [
     BrowserModule,
@@ -53,15 +65,18 @@ import { GradeStudentsComponent } from './components/grade-students/grade-studen
     MatButtonModule,
     MatTableModule,
     MatToolbarModule,
-    MatSelectModule
-    ,MatSidenavModule,
+    MatSelectModule,
+    MatSidenavModule,
     MatExpansionModule,
     MatGridListModule,
     MatDividerModule,
     MatNativeDateModule,
-    MatTableModule,
-    MatTabsModule,
     MatListModule,
+    FormsModule,
+    MatTabsModule,
+    MatSelectModule,
+    DragDropModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
