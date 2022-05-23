@@ -19,7 +19,7 @@ export class CurriculumService {
 
   getCoursesForCurriculum(curriculumId: number): Observable<Course[]>{
     return this.httpService
-      .getById<Curriculum[]>(curriculumId, 'enroll/curriculums/courses')
+      .getAll<Curriculum[]>('enroll/curriculums/'+curriculumId+'/courses')
       .pipe(catchError(this.httpService.handleHttpErrorResponse));
   }
 }

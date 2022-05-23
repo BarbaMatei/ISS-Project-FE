@@ -20,7 +20,6 @@ export class SpecializationInfoComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) =>{ 
       this.specializationId = params['id'];
-      console.log(this.specializationId);
       this.isLoading = false;
     });
 

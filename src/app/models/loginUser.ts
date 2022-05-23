@@ -1,7 +1,9 @@
 export interface loginUser {
     id?: number;
-    name?: string,
-    email: string,
+    first_name?: string,
+    last_name?: string,
+    username: string,
     password: string,
-    token?: string;
+    access_token?: string;
+    refresh_token?: string;
 }
