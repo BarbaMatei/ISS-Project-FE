@@ -74,7 +74,7 @@ export class RegisterCardComponent implements OnInit {
     };
 
     this.registerService.register(user).subscribe({
-      next: (data: User) => {
+      next: (data: any) => {
         //this.responseUserObject = { ...data };
         this.snackBar.open(
           `User has been registered.`,

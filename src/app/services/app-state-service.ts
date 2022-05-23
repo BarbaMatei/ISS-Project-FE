@@ -13,6 +13,7 @@ export class AppStateService {
 
     getDecodedAccessToken(token: string): any {
         try {
+            console.log(jwt_decode(token));
             return jwt_decode(token);
         } catch (Error) {
             return null;
@@ -24,7 +25,7 @@ export class AppStateService {
     }
 
     getCurrentUserId(): number {
-        const token = JSON.parse(localStorage.getItem('currentUser')!).token;
+        const token = JSON.parse(localStorage.getItem('currentUser')!).access_token;
         return this.getDecodedAccessToken(token).UserID; // decode token and get userId
     }
 }

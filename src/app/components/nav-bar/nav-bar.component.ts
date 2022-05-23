@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
+import { loginUser } from 'src/app/models/loginUser';
+import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,10 +15,20 @@ export class NavigationBarComponent implements OnInit {
 
   private logged = true;
 
+  currentUser: loginUser = {
+    username: 'blabla',
+    password: '****'
+  };
 
   constructor(
     private router: Router,
-  ) { }
+    private snackBar: MatSnackBar,
+    private authenticationService: AuthenticationService
+  ) { 
+    this.authenticationService.currentUser.subscribe(
+      (x) => (this.currentUser = x)
+    );
+  }
 
   ngOnInit(): void {
   }
@@ -39,7 +52,14 @@ export class NavigationBarComponent implements OnInit {
   }
 
   signOut(): void {
-    this.logged = !this.logged;
-    this.router.navigate(['details']);
+    this.authenticationService.logout();
+        this.snackBar.open(
+            `Successfully logged out.`,
+            '',
+            {
+                duration: 1000
+            }
+        );
+        this.router.navigate(['/login']);
   }
 }

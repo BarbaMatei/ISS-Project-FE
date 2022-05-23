@@ -1,6 +1,7 @@
 export interface loginUser {
     id?: number;
-    name?: string,
+    first_name?: string,
+    last_name?: string,
     username: string,
     password: string,
     access_token?: string;

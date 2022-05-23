@@ -15,7 +15,7 @@ export class RegisterService {
   }
 
   register(user: User): Observable<User>{
-    return this.httpService.post<User>(user, 'students').pipe(
+    return this.httpService.post<User>(user, 'register').pipe(
       catchError(this.httpService.handleHttpErrorResponse)
     );
   }
