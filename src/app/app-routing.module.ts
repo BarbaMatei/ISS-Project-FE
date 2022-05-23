@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GradeStudentsComponent } from './components/grade-students/grade-students.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
 import { NavigationBarComponent } from './components/nav-bar/nav-bar.component';
 import { SpecializationInfoComponent } from './components/specialization-info/specialization-info.component';

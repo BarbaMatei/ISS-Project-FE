@@ -35,6 +35,7 @@ import { RegisterCardComponent } from './components/register-card/register-card.
 import { StaffComponent } from './components/staff/staff.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatGridListModule,
     MatDividerModule,
     MatNativeDateModule,
+    MatListModule,
     FormsModule,
     MatTabsModule,
     MatSelectModule,
